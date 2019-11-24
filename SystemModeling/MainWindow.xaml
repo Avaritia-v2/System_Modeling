@@ -1,0 +1,100 @@
+﻿<Window x:Class="SystemModeling.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="700" Width="1100">
+    <StackPanel>
+        <Border Padding="5">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="25"/>
+                </Grid.RowDefinitions>
+
+
+                <TextBlock Grid.Column="0" Grid.Row="0"  Margin="0 5 5 0" TextWrapping="Wrap" TextAlignment="Center" >Высота слоя, м</TextBlock>
+                <TextBox x:Name="TB_H" Grid.Column="0" Grid.Row="1" Margin="0 0 5 0" Text="6" PreviewTextInput="TB_PreviewTextInput"/>
+
+                <TextBlock Grid.Column="1" Grid.Row="0"  Margin="0 5 5 0" TextWrapping="Wrap" TextAlignment="Center" >Начальная температура материала,°С</TextBlock>
+                <TextBox x:Name="TB_Tm0" Grid.Column="1" Grid.Row="1" Margin="0 0 5 0" Text="0" PreviewTextInput="TB_PreviewTextInput"/>
+
+                <TextBlock Grid.Column="2" Grid.Row="0"  Margin="0 5 5 0" TextWrapping="Wrap" TextAlignment="Center">Начальная температура газа,°С</TextBlock>
+                <TextBox x:Name="TB_Tg0" Grid.Column="2" Grid.Row="1" Margin="0 0 5 0" Text="700" PreviewTextInput="TB_PreviewTextInput"/>
+
+                <TextBlock Grid.Column="3" Grid.Row="0"  Margin="0 5 5 0" TextWrapping="Wrap" TextAlignment="Center">Скорость газа на свободное сечение шахты, м/с</TextBlock>
+                <TextBox x:Name="TB_Wg" Grid.Column="3" Grid.Row="1" Margin="0 0 5 0" Text="0,72" PreviewTextInput="TB_PreviewTextInput"/>
+
+                <TextBlock Grid.Column="4" Grid.Row="0"  Margin="0 5 5 0" TextWrapping="Wrap" TextAlignment="Center">Средняя теплоемкость газа, кДж/(м3•К).</TextBlock>
+                <TextBox x:Name="TB_Cg" Grid.Column="4" Grid.Row="1" Margin="0 0 5 0" Text="0,9" PreviewTextInput="TB_PreviewTextInput"/>
+
+                <TextBlock Grid.Column="5" Grid.Row="0"  Margin="0 5 5 0" TextWrapping="Wrap" TextAlignment="Center">Расход материалов кг/с</TextBlock>
+                <TextBox x:Name="TB_Rate" Grid.Column="5" Grid.Row="1" Margin="0 0 5 0" Text="1,66" PreviewTextInput="TB_PreviewTextInput"/>
+
+                <TextBlock Grid.Column="6" Grid.Row="0"  Margin="0 5 5 0" TextWrapping="Wrap" TextAlignment="Center">Теплоемкость материалов, кДж/(кг•К)</TextBlock>
+                <TextBox x:Name="TB_Cok" Grid.Column="6" Grid.Row="1" Margin="0 0 5 0" Text="1,49" PreviewTextInput="TB_PreviewTextInput"/>
+
+                <TextBlock Grid.Column="7" Grid.Row="0"  Margin="0 5 5 0" TextWrapping="Wrap" TextAlignment="Center">Объемный коэффициент теплоотдачи, Вт/(м3•К).</TextBlock>
+                <TextBox x:Name="TB_AlfaV" Grid.Column="7" Grid.Row="1" Margin="0 0 5 0" Text="2430" PreviewTextInput="TB_PreviewTextInput"/>
+
+                <TextBlock Grid.Column="8" Grid.Row="0"  Margin="0 5 5 0" TextWrapping="Wrap" TextAlignment="Center">Диаметр аппарата, м</TextBlock>
+                <TextBox x:Name="TB_D" Grid.Column="8" Grid.Row="1" Margin="0 0 5 0" Text="2,3" PreviewTextInput="TB_PreviewTextInput"/>
+            </Grid>
+        </Border>
+        
+        
+        <Border Padding="5">
+            <Grid Height="30">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock FontSize="18">Рассчет:</TextBlock>
+                    <Button x:Name="Solve" Margin="10 0 0 0" Background="#77d920" Click="Solve_Click" FontSize="18">Рассчет</Button>
+                    <Button x:Name="Graph" Margin="10 0 0 0" Background="#77d920" FontSize="18" Click="Graph_Click">Разность температур окатышей и газа</Button>
+                    <Button x:Name="Graph1" Margin="10 0 0 0" Background="#77d920" FontSize="18" Click="Graph1_Click">Изменение температуры окатышей и газа по высоте слоя</Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+
+        <Border Padding="5">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="108*"/>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="259*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Column="0" Grid.Row="0">Отношение теплоемкостей потоков:</TextBlock>
+                <TextBlock Grid.Column="0" Grid.Row="1">Полная относительная высота слоя:</TextBlock>
+                <TextBlock Grid.Column="0" Grid.Row="2">Значение, которое позже пригодится:</TextBlock>
+
+                <TextBox x:Name="TB_M" Grid.Column="1" Grid.Row="0" Margin="0 0 0 5" IsReadOnly="True"></TextBox>
+                <TextBox x:Name="TB_Y0" Grid.Column="1" Grid.Row="1" Margin="0 0 0 5" IsReadOnly="True"></TextBox>
+                <TextBox x:Name="TB_E1" Grid.Column="1" Grid.Row="2" Margin="0 0 0 5" IsReadOnly="True"></TextBox>
+            </Grid>
+        </Border>
+        <Border Padding="5">
+            <Grid Height="Auto" MaxHeight="400">
+                <DataGrid x:Name="grid" Loaded="Grid_Loaded" Width="Auto" Grid.Column="0" ColumnWidth="*" Visibility="Hidden"></DataGrid>
+            </Grid>
+        </Border>
+    </StackPanel>
+</Window>
