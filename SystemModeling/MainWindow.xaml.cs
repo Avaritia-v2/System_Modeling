@@ -28,31 +28,37 @@ namespace SystemModeling
 
         private void Solve_Click(object sender, RoutedEventArgs e)
         {
-            try
+            H = ToDouble(TB_H.Text);
+            Tm0 = ToDouble(TB_Tm0.Text);
+            Tg0 = ToDouble(TB_Tg0.Text);
+            Wg = ToDouble(TB_Wg.Text);
+            Cg = ToDouble(TB_Cg.Text);
+            Rate = ToDouble(TB_Rate.Text);
+            Cok = ToDouble(TB_Cok.Text);
+            AlfaV = ToDouble(TB_AlfaV.Text);
+            D = ToDouble(TB_D.Text);
+            if (H!=0 && Wg!= 0 && Cg != 0 && Rate != 0 && Cok != 0 && AlfaV != 0 && D != 0)
             {
-                H = ToDouble(TB_H.Text);
-                Tm0 = ToDouble(TB_Tm0.Text);
-                Tg0 = ToDouble(TB_Tg0.Text);
-                Wg = ToDouble(TB_Wg.Text);
-                Cg = ToDouble(TB_Cg.Text);
-                Rate = ToDouble(TB_Rate.Text);
-                Cok = ToDouble(TB_Cok.Text);
-                AlfaV = ToDouble(TB_AlfaV.Text);
-                D = ToDouble(TB_D.Text);
+                try
+                {
+                    M = FindM(Cok, Rate, Cg, Wg, D);
+                    Y0 = FindY0(AlfaV, H, Wg, Cg);
+                    E1 = FindE1(M, Y0);
 
-                M = FindM(Cok, Rate, Cg, Wg, D);
-                Y0 = FindY0(AlfaV, H, Wg, Cg);
-                E1 = FindE1(M, Y0);
+                    TB_M.Text = ToStr(M);
+                    TB_Y0.Text = ToStr(Y0);
+                    TB_E1.Text = ToStr(E1);
 
-                TB_M.Text = ToStr(M);
-                TB_Y0.Text = ToStr(Y0);
-                TB_E1.Text = ToStr(E1);
-
-                Grid_Loaded(sender, e);
+                    Grid_Loaded(sender, e);
+                }
+                catch (FormatException)
+                {
+                    MessageBox.Show("Ошибка входная стока имела неверный формат");
+                }
             }
-            catch (FormatException ex)
+            else
             {
-                MessageBox.Show("Ошибка: " + ex.ToString());
+                MessageBox.Show("Ошибка входная стока имела неверный формат");
             }
         }
         private void Grid_Loaded(object sender, RoutedEventArgs e)
