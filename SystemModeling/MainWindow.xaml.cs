@@ -28,18 +28,19 @@ namespace SystemModeling
 
         private void Solve_Click(object sender, RoutedEventArgs e)
         {
-            H = ToDouble(TB_H.Text);
-            Tm0 = ToDouble(TB_Tm0.Text);
-            Tg0 = ToDouble(TB_Tg0.Text);
-            Wg = ToDouble(TB_Wg.Text);
-            Cg = ToDouble(TB_Cg.Text);
-            Rate = ToDouble(TB_Rate.Text);
-            Cok = ToDouble(TB_Cok.Text);
-            AlfaV = ToDouble(TB_AlfaV.Text);
-            D = ToDouble(TB_D.Text);
-            if (H!=0 && Wg!= 0 && Cg != 0 && Rate != 0 && Cok != 0 && AlfaV != 0 && D != 0)
+            try
             {
-                try
+                H = ToDouble(TB_H.Text);
+                Tm0 = ToDouble(TB_Tm0.Text);
+                Tg0 = ToDouble(TB_Tg0.Text);
+                Wg = ToDouble(TB_Wg.Text);
+                Cg = ToDouble(TB_Cg.Text);
+                Rate = ToDouble(TB_Rate.Text);
+                Cok = ToDouble(TB_Cok.Text);
+                AlfaV = ToDouble(TB_AlfaV.Text);
+                D = ToDouble(TB_D.Text);
+
+                if (H != 0 && Wg != 0 && Cg != 0 && Rate != 0 && Cok != 0 && AlfaV != 0 && D != 0)
                 {
                     M = FindM(Cok, Rate, Cg, Wg, D);
                     Y0 = FindY0(AlfaV, H, Wg, Cg);
@@ -50,13 +51,15 @@ namespace SystemModeling
                     TB_E1.Text = ToStr(E1);
 
                     Grid_Loaded(sender, e);
+                    Graph.IsEnabled = true;
+                    Graph1.IsEnabled = true;
                 }
-                catch (FormatException)
+                else
                 {
                     MessageBox.Show("Ошибка входная стока имела неверный формат");
                 }
             }
-            else
+            catch (FormatException)
             {
                 MessageBox.Show("Ошибка входная стока имела неверный формат");
             }

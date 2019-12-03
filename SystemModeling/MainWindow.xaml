@@ -61,8 +61,8 @@
                 <StackPanel Orientation="Horizontal">
                     <TextBlock FontSize="18">Рассчет:</TextBlock>
                     <Button x:Name="Solve" Margin="10 0 0 0" Background="#77d920" Click="Solve_Click" FontSize="18">Рассчет</Button>
-                    <Button x:Name="Graph" Margin="10 0 0 0" Background="#77d920" FontSize="18" Click="Graph_Click">Разность температур окатышей и газа</Button>
-                    <Button x:Name="Graph1" Margin="10 0 0 0" Background="#77d920" FontSize="18" Click="Graph1_Click">Изменение температуры окатышей и газа по высоте слоя</Button>
+                    <Button x:Name="Graph" Margin="10 0 0 0" Background="#77d920" FontSize="18" Click="Graph_Click" IsEnabled="False">Разность температур окатышей и газа</Button>
+                    <Button x:Name="Graph1" Margin="10 0 0 0" Background="#77d920" FontSize="18" Click="Graph1_Click" IsEnabled="False">Изменение температуры окатышей и газа по высоте слоя</Button>
                 </StackPanel>
             </Grid>
         </Border>
