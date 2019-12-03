@@ -84,7 +84,7 @@
 
                 <TextBlock Grid.Column="0" Grid.Row="0">Отношение теплоемкостей потоков:</TextBlock>
                 <TextBlock Grid.Column="0" Grid.Row="1">Полная относительная высота слоя:</TextBlock>
-                <TextBlock Grid.Column="0" Grid.Row="2">Значение, которое позже пригодится:</TextBlock>
+                <TextBlock Grid.Column="0" Grid.Row="2">1-m*exp[(m-1)*Y0/m]</TextBlock>
 
                 <TextBox x:Name="TB_M" Grid.Column="1" Grid.Row="0" Margin="0 0 0 5" IsReadOnly="True"></TextBox>
                 <TextBox x:Name="TB_Y0" Grid.Column="1" Grid.Row="1" Margin="0 0 0 5" IsReadOnly="True"></TextBox>
